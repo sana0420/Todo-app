@@ -1,0 +1,387 @@
+/* ----------------------------- */
+/* GENERAL LAYOUT         */
+/* ----------------------------- */
+body {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+/* Light mode default values */
+* {
+  box-sizing: border-box;
+}
+
+
+:root {
+  --bg: #f0f2f5;
+  --container-bg: #fff;
+  --text: #111;
+  --task-bg: #f9fafb;
+  --task-hover: #f1f5f9;
+}
+
+/* Dark mode override */
+.dark {
+  --bg: #1e1e1e;
+  --container-bg: #2a2a2a;
+  --text: #e8e8e8;
+  --task-bg: #333;
+  --task-hover: #3d3d3d;
+}
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  width: fit-content;
+  max-width: 480px;
+  min-width: 320px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background: var(--container-bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  margin: 0;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.container h1 {
+  margin: 0 0 20px 0;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.2;
+}
+
+/* ----------------------------- */
+/* INPUTS             */
+/* ----------------------------- */
+.input-container,
+.search-container {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#task-input,
+#search-input {
+  flex: 1;
+  font-weight: 400;
+  padding: 10px;
+  border-radius: 0; 
+  border: 1px solid #ddd;
+  border-right: none; 
+  outline: none;
+  margin: 5px;
+  background: var(--container-bg);
+  color: var(--text); 
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ⭐ MODIFICATION: Add radius back to the left side of the input field */
+#task-input {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+#sort-select{
+  border: 1px solid #ddd;
+  /* ⭐ MODIFICATION: Separate the input border from the select border */
+  border-right: none; 
+  border: solid 1px #ddd;
+  background: var(--container-bg);
+  color: var(--text); 
+  margin: 5px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+/* ⭐ NEW: Styles for the Category Dropdown */
+#categorySelect { 
+  padding: 10px;
+  border: 1px solid #ddd;
+  /* Set background and color to match the input */
+  color: var(--text); 
+  background: var(--container-bg);
+  align-self: stretch;
+  margin: 5px;
+  box-sizing: border-box;
+  font-weight: 400;
+  min-width: 0;
+}
+
+#add-btn {
+  padding: 8px 10px;
+  /* ⭐ MODIFICATION: Remove margin-left to connect to the select dropdown */
+  margin: 5px; 
+  cursor: pointer;
+  background: #4CAF50;
+  color: white;
+  border-radius: 6px;
+  border: solid 1px #ddd;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+#add-btn:hover {
+  background: #45a049;
+}
+
+/* ----------------------------- */
+/* LIST / ITEMS       */
+/* ----------------------------- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: var(--task-bg);
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeIn 0.25s ease forwards;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow-wrap: break-word;
+}
+
+.todo-item:hover {
+  background: var(--task-hover);
+  transform: translateX(4px);
+  transition: 0.2s ease;
+}
+
+/* Toggle button */
+#theme-toggle {
+  background: none;
+  border: 2px solid var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  font-size: 14px;
+  transition: 0.3s;
+  color: var(--text);
+}
+
+#theme-toggle:hover { opacity: 0.7; }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-item.remove { animation: fadeOut 0.3s ease forwards; }
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+  transform: scale(0.98);
+}
+
+/* ----------------------------- */
+/* BUTTONS            */
+/* ----------------------------- */
+.toggle-btn,
+.delete-btn {
+  padding: 6px 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 12px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+.toggle-btn {
+  background: #4caf50;
+  color: white;
+}
+.toggle-btn:hover {
+  background: #449d48;
+}
+
+.delete-btn {
+  background: #d9534f;
+  color: white;
+}
+.delete-btn:hover {
+  background: #c9302c;
+}
+
+.category-badge {
+  background: #6c63ff;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.dark .category-badge {
+  background: #938bff;
+}
+
+.task-text {
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-align: center;
+  margin: 5px;
+}
+
+.edit-btn {
+  background: #3b82f6;
+  max-width: fit-content;
+  color: white;
+  font-weight: 400;
+  border: none;
+  margin-left: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.edit-btn:hover { background: #2563eb; }
+.edit-btn:active { background: #1d4ed8; }
+
+/* ----------------------------- */
+/* MOBILE LAYOUT         */
+/* ----------------------------- */
+@media (max-width: 600px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+    padding: 10px;
+  }
+
+  .parent {
+    width: 100%;
+  }
+
+  .container {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 12px;
+    min-height: fit-content;
+  }
+
+  ul {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .todo-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  input[type="text"],
+  #task-input {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  /* ⭐ FIX INPUT OVERFLOW ISSUE */
+  .input-container,
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* ⭐ MODIFICATION: Reset mobile styles to work with the dropdown */
+  #task-input,
+  #search-input,
+  #categorySelect,
+  #sort-select,
+  #add-btn {
+    width: 100%;
+    margin: 0; /* remove desktop spacing */
+    /* Reset borders/radius for vertical stacking */
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+  
+  /* ⭐ NEW: Ensure input/select don't have conflicting right borders in mobile */
+  #task-input,
+  #search-input,
+  #categorySelect,
+  #sort-select {
+    border-right: 1px solid #ddd;
+  }
+}
+
+.input-error {
+  border: 2px solid #ff4d4d !important;
+  animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}

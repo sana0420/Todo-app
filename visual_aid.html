@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visual Aid for To-Do App</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <h1>Visual Aid: Understanding the To-Do App Workflow</h1>
+
+  <h2>Class Diagram</h2>
+  <div class="mermaid">
+    classDiagram
+      class Todo {
+        +String title
+        +Boolean completed
+        +Date createdAt
+        +toggleComplete()
+      }
+
+      class TodoList {
+        +Array todos
+        +addTodo(text)
+        +removeTodo(id)
+        +toggleComplete(id)
+        +getTodos()
+        +save()
+      }
+
+      class UI {
+        +TodoList todoList
+        +setupSearch()
+        +render()
+      }
+
+      TodoList --> Todo : manages
+      UI --> TodoList : uses
+  </div>
+
+  <h2>Sequence Diagram: Adding a Task</h2>
+  <div class="mermaid">
+    sequenceDiagram
+      participant User
+      participant HTML
+      participant main.js
+      participant TodoList
+      participant UI
+      participant localStorage
+
+      User->>HTML: Enters task in input
+      User->>HTML: Clicks Add button
+      HTML->>main.js: add-btn click event
+      main.js->>TodoList: addTodo(task)
+      TodoList->>Todo: new Todo(text)
+      TodoList->>TodoList: push to todos array
+      TodoList->>localStorage: save()
+      main.js->>UI: render()
+      UI->>TodoList: getTodos()
+      UI->>HTML: Update todo-list element
+  </div>
+
+  <h2>Sequence Diagram: Toggling Completion</h2>
+  <div class="mermaid">
+    sequenceDiagram
+      participant User
+      participant HTML
+      participant UI
+      participant TodoList
+      participant localStorage
+
+      User->>HTML: Clicks on task li
+      HTML->>UI: li click event
+      UI->>TodoList: toggleComplete(todo.id)
+      TodoList->>TodoList: find and toggle completed
+      TodoList->>localStorage: save()
+      UI->>UI: render()
+      UI->>HTML: Re-render list with updated class
+  </div>
+
+  <h2>Sequence Diagram: Searching Tasks</h2>
+  <div class="mermaid">
+    sequenceDiagram
+      participant User
+      participant HTML
+      participant UI
+      participant TodoList
+
+      User->>HTML: Types in search-input
+      HTML->>UI: input event
+      UI->>UI: render()
+      UI->>TodoList: getTodos()
+      UI->>UI: filter todos by searchTerm
+      UI->>HTML: Update todo-list with filtered items
+  </div>
+
+  <p>This visual aid shows the key classes and workflows of the OOP To-Do app. The app uses localStorage for persistence, allowing tasks to survive page reloads.</p>
+</body>
+</html>
