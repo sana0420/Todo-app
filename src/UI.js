@@ -95,9 +95,15 @@ export class UI {
       // Toggle Button
       const toggleBtn = document.createElement('button');
       toggleBtn.classList.add('toggle-btn');
-      toggleBtn.innerHTML = todo.completed
+      if (window.innerWidth <= 400){
+        toggleBtn.innerHTML = todo.completed
+        ? '<i class="fa-solid fa-rotate-left"></i> '     // undo icon
+        : '<i class="fa-solid fa-circle-check"></i> ';   // done icon
+      }else{
+        toggleBtn.innerHTML = todo.completed
         ? '<i class="fa-solid fa-rotate-left"></i> Undo'     // undo icon
         : '<i class="fa-solid fa-circle-check"></i> Done';   // done icon
+      }
 
       toggleBtn.onclick = () => {
         this.todoList.toggleTodo(index);
@@ -106,7 +112,11 @@ export class UI {
       // Delete Button (with animation)
       const deleteBtn = document.createElement('button');
       deleteBtn.classList.add('delete-btn');
-      deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Delete';
+      if (window.innerWidth <= 400) {
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i> ';
+      }else{
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Delete';
+      }
       deleteBtn.onclick = () => {
         li.classList.add('remove'); // fade-out animation
         li.addEventListener('animationend', () => {
@@ -118,7 +128,11 @@ export class UI {
       //edit button
       const editBtn = document.createElement('button');
       editBtn.classList.add('edit-btn');
-      editBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit';
+      if (window.innerWidth <= 400) {
+        editBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+      } else {
+        editBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit';
+      }
       editBtn.onclick = () => {
         this.todoList.editTodo(todo.id);
         this.render();

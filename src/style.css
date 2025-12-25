@@ -179,9 +179,9 @@ ul {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  word-wrap: break-word;
   font-weight: 400;
-  overflow-wrap: break-word;
+  word-break: keep-all;
+  white-space: normal;
 }
 
 .todo-item:hover {
@@ -327,15 +327,25 @@ ul {
 
   .todo-item {
     flex-direction: row;
+    justify-content: center;
     align-items: flex-start;
     gap: 8px;
     padding: 12px;
     border-radius: 12px;
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    word-break: keep-all;
+    white-space: normal;
   }
 
+  .task-text {
+    flex: 1;
+    overflow: auto;
+    white-space: nowrap;
+    text-align: center;
+    margin: 5px;
+  }
   input[type="text"],
   #task-input {
     padding: 12px;
@@ -376,6 +386,18 @@ ul {
 .input-error {
   border: 2px solid #ff4d4d !important;
   animation: shake 0.2s ease-in-out;
+}
+.edit-btn {
+  background: #3b82f6;
+  max-width: fit-content;
+  color: white;
+  font-weight: 400;
+  border: none;
+  margin-left: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
 @keyframes shake {
