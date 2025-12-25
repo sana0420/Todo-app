@@ -34,14 +34,17 @@ export class TodoList {
     this.saveToLocalStorage();
   }
 
-  deleteTodo(index) {
-    this.todos.splice(index, 1);
+  deleteTodo(id) {
+    this.todos = this.todos.filter(todo => todo.id !== id);
     this.saveToLocalStorage();
   }
 
-  toggleTodo(index) {
-    this.todos[index].toggleComplete();
-    this.saveToLocalStorage();
+  toggleTodo(id) {
+    const todo = this.todos.find(todo => todo.id === id);
+    if (todo) {
+      todo.toggleComplete();
+      this.saveToLocalStorage();
+    }
   }
 
   getTodos() {
@@ -72,37 +75,12 @@ export class TodoList {
   console.log("📋 Parsed todos array:");
   console.log(JSON.parse(stored));
 }
-editTodo(index) {
-  this.todoContainer.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("edit-btn")) return;
-
-    const id = e.target.dataset.id;
-    const span = this.todoContainer.querySelector(`span[data-id="${id}"]`);
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = span.textContent;
-    input.className = "edit-input";
-    input.dataset.id = id;
-
-    span.replaceWith(input);
-    input.focus();
-
-    // Save on Enter
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        this.saveEdit(input);
-      }
-      if (e.key === "Escape") {
-        this.renderTodos(); // cancel edit
-      }
-    });
-
-    // Save on blur
-    input.addEventListener("blur", () => {
-      this.saveEdit(input);
-    });
-  });
-}
+  editTodo(id, newTitle) {
+    const todo = this.todos.find(todo => todo.id === id);
+    if (todo && newTitle.trim()) {
+      todo.title = newTitle.trim();
+      this.saveToLocalStorage();
+    }
+  }
 
 }

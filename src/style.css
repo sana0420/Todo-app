@@ -283,6 +283,21 @@ ul {
   margin: 5px;
 }
 
+.edit-input {
+  flex: 1;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+  background: var(--container-bg);
+  color: var(--text);
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 .edit-btn {
   background: #3b82f6;
   max-width: fit-content;

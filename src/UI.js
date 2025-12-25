@@ -106,7 +106,7 @@ export class UI {
       }
 
       toggleBtn.onclick = () => {
-        this.todoList.toggleTodo(index);
+        this.todoList.toggleTodo(todo.id);
         this.render();
       };
       // Delete Button (with animation)
@@ -120,7 +120,7 @@ export class UI {
       deleteBtn.onclick = () => {
         li.classList.add('remove'); // fade-out animation
         li.addEventListener('animationend', () => {
-          this.todoList.deleteTodo(index);
+          this.todoList.deleteTodo(todo.id);
           this.render();
         });
       };
@@ -134,8 +134,56 @@ export class UI {
         editBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Edit';
       }
       editBtn.onclick = () => {
-        this.todoList.editTodo(todo.id);
-        this.render();
+        // Hide the text span and edit button
+        textSpan.style.display = 'none';
+        editBtn.style.display = 'none';
+        
+        // Create input field with matching styling
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = todo.title;
+        input.classList.add('edit-input');
+        
+        // Insert input after textSpan (maintains layout)
+        textSpan.parentNode.insertBefore(input, textSpan.nextSibling);
+        input.focus();
+        input.select();
+
+        // Save on Enter
+        const saveEdit = () => {
+          const newTitle = input.value.trim();
+          if (newTitle) {
+            // Update the todo data
+            this.todoList.editTodo(todo.id, newTitle);
+            // Update the text span content
+            textSpan.textContent = newTitle;
+          }
+          // Clean up: remove input, show text span and edit button again
+          input.remove();
+          textSpan.style.display = '';
+          editBtn.style.display = '';
+        };
+
+        // Cancel edit (restore UI)
+        const cancelEdit = () => {
+          input.remove();
+          textSpan.style.display = '';
+          editBtn.style.display = '';
+        };
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            saveEdit();
+          }
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            cancelEdit();
+          }
+        });
+
+        // Save on blur (when clicking outside)
+        input.addEventListener('blur', saveEdit);
       };
 
       // Append elements
