@@ -242,6 +242,7 @@ ul {
   white-space: nowrap;
   box-sizing: border-box;
   font-weight: 400;
+  flex-shrink: 0;
 }
 
 .toggle-btn {
@@ -276,6 +277,7 @@ ul {
 
 .task-text {
   flex: 1;
+  min-width: 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -285,6 +287,7 @@ ul {
 
 .edit-input {
   flex: 1;
+  min-width: 0;
   padding: 5px;
   margin: 5px;
   border: 2px solid #3b82f6;
@@ -296,6 +299,7 @@ ul {
   outline: none;
   text-align: center;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .edit-btn {
@@ -309,6 +313,8 @@ ul {
   border-radius: 6px;
   cursor: pointer;
   transition: 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .edit-btn:hover { background: #2563eb; }
 .edit-btn:active { background: #1d4ed8; }
@@ -401,18 +407,6 @@ ul {
 .input-error {
   border: 2px solid #ff4d4d !important;
   animation: shake 0.2s ease-in-out;
-}
-.edit-btn {
-  background: #3b82f6;
-  max-width: fit-content;
-  color: white;
-  font-weight: 400;
-  border: none;
-  margin-left: 5px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s ease;
 }
 
 @keyframes shake {
