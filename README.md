@@ -43,7 +43,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. **Clone the repo**
 ```bash
-git clone https://github.com/sana02420/todo-app.git
+git clone https://github.com/sana0420/todo-app.git
 
 ```
 
@@ -72,6 +72,4 @@ git clone https://github.com/sana02420/todo-app.git
 
 ## 🤝 Contact
 
-Your Name - [@your_handle](https://twitter.com/your_handle) - email@example.com
-
-Project Link: [https://github.com/yourusername/todo-list-js](https://www.google.com/search?q=https://github.com/yourusername/todo-list-js)
+Project Link: [https://github.com/sana 0420/todo-app](https://www.google.com/search?q=https://github.com/sana0420/todo-app)
