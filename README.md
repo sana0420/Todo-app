@@ -33,7 +33,7 @@ A sleek, responsive, and functional To-Do List application built with vanilla Ja
 * **HTML5**: Semantic structure.
 * **CSS3**: Custom styling with Flexbox/Grid and CSS Variables for theming.
 * **JavaScript (ES6+)**: DOM manipulation and application logic.
-* **Local Storage**: (Optional - *Add this if your app saves data after refresh*) Tasks are persisted in the browser.
+* **Local Storage**: Tasks are persisted in the browser.
 
 ---
 
@@ -43,7 +43,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. **Clone the repo**
 ```bash
-git clone https://github.com/sana0420/todo-app.git
+git clone https://github.com/sana0420/Todo-app.git
 
 ```
 
@@ -72,4 +72,4 @@ git clone https://github.com/sana0420/todo-app.git
 
 ## 🤝 Contact
 
-Project Link: [https://github.com/sana 0420/Todo-app](https://www.google.com/search?q=https://github.com/sana0420/Todo-app)
+Project Link: [https://github.com/sana0420/Todo-app](https://www.google.com/search?q=https://github.com/sana0420/Todo-app)
