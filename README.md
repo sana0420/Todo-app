@@ -72,4 +72,4 @@ git clone https://github.com/sana0420/todo-app.git
 
 ## 🤝 Contact
 
-Project Link: [https://github.com/sana 0420/todo-app](https://www.google.com/search?q=https://github.com/sana0420/todo-app)
+Project Link: [https://github.com/sana 0420/Todo-app](https://www.google.com/search?q=https://github.com/sana0420/Todo-app)
